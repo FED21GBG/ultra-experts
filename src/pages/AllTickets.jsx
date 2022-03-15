@@ -3,21 +3,23 @@ import Card from "../components/EventCard";
 
 function AllTickets() {
     let [events, setEvents] = useState([])
-    const url = 'https://pokeapi.co/api/v2/pokemon?limit=4&offset=0'
+    const url = 'https://fedeperin-harry-potter-api-en.herokuapp.com/db'
 
-    useEffect(()=>{
-        fetch (url)
-        .then(res => res.json())
-        .then(data => setEvents(data.results))
+ 
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setEvents(data.spells))
     }, [])
-    return ( 
+
+    return (
         <section>
             <h1>Event</h1>
-            {events.map((event, i)=>(
-               <Card event={event} key={i} />
+            {events.map((event, i) => (
+                <Card  event={event} key={i} />
             ))}
         </section>
-     );
+    );
 }
 
 export default AllTickets;
