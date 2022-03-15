@@ -1,4 +1,5 @@
 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import "./App.css";
 
@@ -8,26 +9,21 @@ import Home from './pages/Home';
 
 function App() {
   return (
-    
-      <main className='App'>
-        <h1>Events</h1>
-
-
-        <Home/>
-
-
-      </main>
-    
-
-      <h2>Events1</h2>
-      <h3>Events2</h3>
-
-
-      
+    <main className='App'>
       <h1>Events</h1>
-      <AllTickets/>
-    </div>
 
+      <Router>
+        <main>
+
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/AllTickets' element={<AllTickets />} />
+          </Routes>
+
+          <button className='bookBtn'><Link to='/AllTickets'>Book Tickets</Link></button>
+        </main>
+      </Router>
+    </main>
   );
 }
 
