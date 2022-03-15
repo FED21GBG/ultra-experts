@@ -7,7 +7,7 @@ function Card(props) {
     function addEvent() {
         setCart(props.event)
         console.log(props.event);
-        <ProductCard cart={cart} />
+      
     }
 
 
