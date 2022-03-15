@@ -1,4 +1,4 @@
-import { browserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+// import { browserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import AllTickets from './pages/AllTickets';
 
