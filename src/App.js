@@ -1,17 +1,13 @@
-import logo from './logo.svg';
+import { browserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css';
+import AllTickets from './pages/AllTickets';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Hejsan</h1>
-      <p>hallå är det någon där</p>
-      <p>hifesejdfkshgif</p>
-      <p>koppllllaaaa</p>
-
-      <p>hej vilma</p>
-
-      <p> ser du mig ?</p>
+      <h1>Events</h1>
+      <AllTickets/>
     </div>
   );
 }
