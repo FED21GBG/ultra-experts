@@ -1,9 +1,17 @@
 function Card(props) {
-    return ( 
+    function addEvent(){
+        alert('hej')
+    }
+    return (
         <section>
-            <p>event{props.event.name}</p>
+            <h2>{props.event.id}</h2>
+            <h3>Event: {props.event.spell}</h3>
+            <p>Use : {props.event.use}</p>
+
+            <button onClick={addEvent}>book</button>
+
         </section>
-     );
+    );
 }
 
 export default Card;

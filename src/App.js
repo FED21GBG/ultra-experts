@@ -1,13 +1,23 @@
 
+
 import "./App.css";
 
-// import { browserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import AllTickets from './pages/AllTickets';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
+    
+      <main className='App'>
+        <h1>Events</h1>
+
+
+        <Home/>
+
+
+      </main>
+    
 
       <h2>Events1</h2>
       <h3>Events2</h3>
@@ -17,6 +27,7 @@ function App() {
       <h1>Events</h1>
       <AllTickets/>
     </div>
+
   );
 }
 
