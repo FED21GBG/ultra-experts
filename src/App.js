@@ -6,6 +6,7 @@ import AllTickets from './pages/AllTickets';
 function App() {
   return (
     <div className="App">
+      
       <h1>Events</h1>
       <AllTickets/>
     </div>
