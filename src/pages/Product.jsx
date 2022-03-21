@@ -17,6 +17,7 @@ function Product({ name, date, to, price, where }) {
     const addedOrder = orders.find((from) => from.name === product.name);
 
     if (localState === 1) {
+      console.log(localState)
       setlocalDisabled(true);
     } else {
       setLocalState((prevCount) => prevCount - 1);

@@ -4,7 +4,7 @@ export const ListContext = createContext();
 export const ProductProvider = (props) => {
   const [events, setEvents] = useState([]);
   const [orders, setOrders] = useState([]);
-  const [setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const addProduct = (product) => {
     const addedOrder = orders.find((order) => order.name === product.name);
@@ -25,7 +25,8 @@ export const ProductProvider = (props) => {
   const removeProduct = (product) => {
     const addedOrder = orders.find((order) => order.name === product.name);
 
-    if (addedOrder.quantity === 1) {
+    if (product.quantity === 1) {
+      console.log(product.quantity)
       setDisabled(true)
     } else {
       setOrders(
@@ -55,6 +56,7 @@ export const ProductProvider = (props) => {
         setOrders,
         addProduct,
         removeProduct,
+        disabled
       }}
     >
       {props.children}

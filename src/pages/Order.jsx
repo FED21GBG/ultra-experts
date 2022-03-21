@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Order() {
-  let { orders, addProduct, removeProduct } = useContext(ListContext);
+  let { orders, addProduct, removeProduct, disabled } = useContext(ListContext);
 
   let totalPrice = orders.reduce(
     (price, order) => price + order.quantity * order.price,
@@ -37,6 +37,7 @@ export default function Order() {
                 <div
                   className="ticketButton"
                   onClick={() => removeProduct(order)}
+                  disabled={disabled}
                 >
                   -
                 </div>
