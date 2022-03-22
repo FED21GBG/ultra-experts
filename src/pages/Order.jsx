@@ -16,7 +16,7 @@ export default function Order() {
   const { from } = location.state;
 
   const removeFromCart = (order) => {
-    setOrders(orders.filter((product) => product !== order));
+    setOrders(orders.filter((addedevent) => addedevent !== order));
   };
 
   return (

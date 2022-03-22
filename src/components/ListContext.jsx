@@ -6,31 +6,31 @@ export const ProductProvider = (props) => {
   const [orders, setOrders] = useState([]);
   const [disabled, setDisabled] = useState(true);
 
-  const addProduct = (product) => {
-    const addedOrder = orders.find((order) => order.name === product.name);
+  const addProduct = (addedevent) => {
+    const addedOrder = orders.find((order) => order.name === addedevent.name);
 
     if (addedOrder) {
       setOrders(
         orders.map((order) =>
-          order.name === product.name
+          order.name === addedevent.name
             ? { ...addedOrder, quantity: addedOrder.quantity + 1 }
             : order
         )
       );
     } else {
-      setOrders([...orders, { ...product, quantity: 1 }]);
+      setOrders([...orders, { ...addedevent, quantity: 1 }]);
     }
   };
 
-  const removeProduct = (product) => {
-    const addedOrder = orders.find((order) => order.name === product.name);
+  const removeProduct = (addedevent) => {
+    const addedOrder = orders.find((order) => order.name === addedevent.name);
 
-    if (product.quantity === 1) {
+    if (addedevent.quantity === 1) {
       setDisabled(true);
     } else {
       setOrders(
         orders.map((order) =>
-          order.name === product.name
+          order.name === addedevent.name
             ? { ...addedOrder, quantity: addedOrder.quantity - 1 }
             : order
         )
