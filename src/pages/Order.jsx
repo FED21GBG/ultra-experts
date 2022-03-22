@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Order() {
-  let { orders, addProduct, removeProduct, disabled } = useContext(ListContext);
+  let { orders, addProduct, removeProduct, disabled, setOrders } =
+    useContext(ListContext);
 
   let totalPrice = orders.reduce(
     (price, order) => price + order.quantity * order.price,
@@ -14,6 +15,10 @@ export default function Order() {
   const location = useLocation();
   const { from } = location.state;
 
+  const removeFromCart = (order) => {
+    setOrders(orders.filter((product) => product !== order));
+  };
+
   return (
     <section className="mainOrderContainer">
       <section>
@@ -22,49 +27,71 @@ export default function Order() {
             Alla eventer
           </Link>
         </button>
-        <h1 className="title">Order</h1>
 
-        {orders.map((order) => (
-          <section key={order.name}>
-            <section className="orderContainer">
-              <article className="orderInfo">
-                <h6 className="orderTitle">{order.name}</h6>
-                <p className="eventWhen">
-                  {order.date} kl. {order.from} - {order.to}
-                </p>
-              </article>
-              <article className="ticketsCount">
-                <div
-                  className="ticketButton"
-                  onClick={() => removeProduct(order)}
-                  disabled={disabled}
-                >
-                  -
-                </div>
-                <div className="ticketNumber">{order.quantity}</div>
-                <div className="ticketButton" onClick={() => addProduct(order)}>
-                  +
-                </div>
-              </article>
-              <div className="orderPrice">{order.price * order.quantity}</div>
-            </section>
-          </section>
-        ))}
+        {orders.map(
+          (order) =>
+            <h1 className="title">Order</h1> && (
+              <section key={order.name}>
+                <section className="orderContainer">
+                  <article className="orderInfo">
+                    <div>
+                      <h6 className="orderTitle">{order.name}</h6>
+                      <p className="eventWhen">
+                        {order.date} kl. {order.from} - {order.to}
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        className="remove"
+                        onClick={() => removeFromCart(order)}
+                      >
+                        Ta bort 🛒
+                      </p>
+                    </div>
+                  </article>
+                  <article className="ticketsCount">
+                    <div
+                      className="ticketButton"
+                      onClick={() => removeProduct(order)}
+                      disabled={disabled}
+                    >
+                      -
+                    </div>
+                    <div className="ticketNumber">{order.quantity}</div>
+                    <div
+                      className="ticketButton"
+                      onClick={() => addProduct(order)}
+                    >
+                      +
+                    </div>
+                  </article>
+                  <div className="orderPrice">
+                    {order.price * order.quantity}
+                  </div>
+                </section>
+              </section>
+            )
+        )}
       </section>
-      <section>
-        <p className="totalText">Totalt värde på order</p>
-        <h2 className="totalPrice">{totalPrice} SEK</h2>
 
-        <button className="bookBtnOrder cartBookTickets" id="btnOrder">
-          <Link
-            to="/Receipt"
-            state={{ from: { orders, totalPrice } }}
-            className="bookTickets"
-          >
-            Skicka order
-          </Link>
-        </button>
-      </section>
+      {orders.length > 0 ? (
+        <section>
+          <p className="totalText">Totalt värde på order</p>
+          <h2 className="totalPrice">{totalPrice} SEK</h2>
+
+          <button className="bookBtnOrder cartBookTickets" id="btnOrder">
+            <Link
+              to="/Receipt"
+              state={{ from: { orders, totalPrice } }}
+              className="bookTickets"
+            >
+              Skicka order
+            </Link>
+          </button>
+        </section>
+      ) : (
+        <p className="emptyCart">Din varukorg är tom...😞</p>
+      )}
     </section>
   );
 }

@@ -26,8 +26,7 @@ export const ProductProvider = (props) => {
     const addedOrder = orders.find((order) => order.name === product.name);
 
     if (product.quantity === 1) {
-      console.log(product.quantity)
-      setDisabled(true)
+      setDisabled(true);
     } else {
       setOrders(
         orders.map((order) =>
@@ -56,7 +55,7 @@ export const ProductProvider = (props) => {
         setOrders,
         addProduct,
         removeProduct,
-        disabled
+        disabled,
       }}
     >
       {props.children}
